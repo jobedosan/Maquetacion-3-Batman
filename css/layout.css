@@ -1,0 +1,2012 @@
+/* Esto es lo que se define luego de haber hecho la retícula del proyecto */
+
+/* Técnica 1 float left/right; */
+
+.floatl {
+	float: left;
+}
+
+.floatr {
+	float: right;
+}
+
+/* Para limpiar los flotados se usa este selector, se seleccionan los elementos con clase clear, y lo que haya antes y después de dicho elemento con clase clear y se aplicar la propiedad clear: both, left o right. 
+Con after y before es como si se crearan unos elementos antes y después, que estarán vacíos, es como el div vacío solo que no nos penaliza el navegador, esta es la forma correcta de hacerlo, aplicando la clase que
+limpia los flotados al elemento contenedor  */
+.clear,
+.clear::after,
+.clear::before {
+	clear: both;
+}
+
+.clear::after,
+.clear::before {
+
+	/* Para que funcionen los pseudoelementos ::after y ::before se debe agregar una propiedad content, esta muestra lo que se agregará antes y después del elemento con clase clear, en este caso es el espacio vacío
+	así que se deja en blanco y solo se copian dos comillas */
+	content: " ";
+	/* También es importante agregar esto porque lo que se genera con la propiedad content no tiene ninguna disposición o valor CSS por default, entonces como servirá para limpiar los elementos que haya previamente y
+	 posteriormente, le debemos darle un display de bloque para que abarque todo el espacio horizontal, es como el div vacío solo que aprovechando los psudoelementos de CSS */
+	display: block;
+}
+
+/* Técnica 2 display:inline-block; */
+
+/* Aquí se definen las clases para la maquetación con display inline-block, cuando se aplica un inline-block a un elemento sea de línea o de bloque, conserva las características de bloque en el sentido de que va a 
+desplazar los siguientes elementos que no estén pegados a el, hacia arriba o abajo dependiendo de su posición en el html. Pero con los elementos que tenga al lado va a compartir el espacio si el ancho lo permite.
+Cuando se usa un elemento con inline-block se genera un pequeño espacio en blanco entre cada elemento. Un dato interesante es que el espacio en blanco se elimina si pegamos la etiqueta de cierre y la de apertura
+de los elementos que se separan (la estiquetas en el html, es como eliminar la indentación), pero esto no es nada práctico porque no se apreciará bien el código */
+
+/* otra forma es hacer un comentario vacío entre la etiqueta de cierre y la de apertura de los elementos que se separan. A pesar de que no se rompe tanto la identación, semánticamente está mal */
+
+/* Más abajo se explica cómo de hace correctamente la eliminación de este espacio que se genera, justo antes de la clase f0 */
+
+/* Al aplicar esta clase se comienzan a apilar los elementos pero no quedan por completo como queremos */
+.i-b {
+	display: inline-block;
+}
+
+/*
+
+/* Técnica 3 display:table; */
+
+/* Esto lo que hace es dar estilos de tabla a los elementos, es decir, el elemento se va a visualizar en forma de tabla */
+
+.table {
+	display: table;
+}
+
+
+.table-cell {
+	display: table-cell;
+}
+
+
+/* Técnica 4 display:flex; */
+
+/* Estas son las propiedades para los padres */
+
+/* Con los cambios realizados acá, cada vez que queramos que un contenedor sea flexible, usamos la clase flex y nos olvidamos de los prefijos porque ya forman parte de la clase */
+.flex {
+	/* Jon explica que anteriormente , en navegadores más viejos, el modelo de caja flexible no se llamaba flexbox, sino que se llamaba box, y se agrega la siguiente línea con dicho valor para la comopatibilidad
+	con estos navegadores */
+	display: -webkit-box;
+	/* Se agrega esta línea con prefijo para que flexbox sea compatible con algunos navegadores que no soportan flexbox */
+	display: -webkit-flex;
+	/* Se coloca con el prefijo ms porque IE no se actualiza automáticamente, entonces para asegurar la compatibilidad, mejor poner esta línea. También es importante resaltar que la propiedad para IE no se llama
+	flex como para otros navegadores, sino flexbox  */
+	display: -ms-flexbox;
+	display: flex;
+}
+
+/* Esta clase se crea para cuando queramos contenedores flexibles en línea, lleva las mismas propiedades y valores que la anterior */
+.flex-inline {
+	/* Cuando se llamaba box no existía el flex-inline entonces esa línea se omite */
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: flex;
+}
+
+.flex-row {
+	-webkit-flex-direction: row;
+	-ms-flex-direction: row;
+	flex-direction: row;
+}
+
+.flex-row-reverse {
+	-webkit-flex-direction: row-reverse;
+	-ms-flex-direction: row-reverse;
+	flex-direction: row-reverse;
+}
+
+.flex-column {
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+.flex-column-reverse {
+	-webkit-flex-direction: column-reverse;
+	-ms-flex-direction: column-reverse;
+	flex-direction: column-reverse;
+}
+
+.flex-nowrap {
+	-webkit-flex-wrap: nowrap;
+	-ms-flex-wrap: nowrap;
+	flex-wrap: nowrap;
+}
+
+.flex-wrap {
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.flex-wrap {
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.flex-wrap-reverse {
+	-webkit-flex-wrap: wrap-reverse;
+	-ms-flex-wrap: wrap-reverse;
+	flex-wrap: wrap-reverse;
+}
+
+/* Jon menciona que no hay necesidades de hacer clases para flex-flow pues es un shorthand de las clases anteriores que comprenden la dirección y el wrap. Con esas clase anteriores se pueden obtener los mismos
+resultados. */
+
+/* Las siguientes clases son para justify-content, como es muy largo el nombre se usarán solo las iniciales. */
+
+.jc-flex-start {
+	-webkit-justify-content: flex-start;
+	/* En IE la propiedad se llama flex-pack y la propiedad es start, end, center, etc. En lugar de flex-start, flex-end, etc. */
+	-ms-flex-pack: start;
+	justify-content: flex-start;
+}
+
+.jc-flex-end {
+	-webkit-justify-content: flex-end;
+	-ms-flex-pack: end;
+	justify-content: flex-end;
+}
+
+.jc-flex-center {
+	-webkit-justify-content: flex-center;
+	-ms-flex-pack: center;
+	justify-content: flex-center;
+}
+
+.jc-space-between {
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+}
+
+.jc-space-around {
+	-webkit-justify-content: space-around;
+	-ms-flex-pack: distribute;
+	justify-content: space-around;
+}
+
+.ai-flex-start {
+	-webkit-align-items: flex-start;
+	/* Aquí también cambia el valor y la propiedad para IE */
+	-ms-flex-align: start;
+	align-items: flex-start;
+}
+
+.ai-flex-end {
+	-webkit-align-items: flex-end;
+	-ms-flex-align: end;
+	align-items: flex-end;
+}
+
+.ai-center {
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+
+.ai-baseline {
+	-webkit-align-items: baseline;
+	-ms-flex-align: baseline;
+	align-items: baseline;
+}
+
+.ai-stretch {
+	-webkit-align-items: stretch;
+	-ms-flex-align: stretch;
+	align-items: stretch;
+}
+
+.ac-flex-start {
+	-webkit-align-items: flex-start;
+	/* Aquí también cambia el valor y la propiedad para IE */
+	-ms-flex-line-pack: start;
+	align-items: flex-start;
+}
+
+.ac-flex-end {
+	-webkit-align-items: flex-end;
+	-ms-flex-line-pack: end;
+	align-items: flex-end;
+}
+
+.ac-center {
+	-webkit-align-items: center;
+	-ms-flex-line-pack: center;
+	align-items: center;
+}
+
+.ac-space-between {
+	-webkit-align-items: space-between;
+	-ms-flex-line-pack: justify;
+	align-items: space-between;
+}
+
+.ac-stretch {
+	-webkit-align-items: stretch;
+	-ms-flex-line-pack: stretch;
+	align-items: stretch;
+}
+
+/* Ya que se tienen las propiedades de los elementos padre, Jon menciona que las  propiedades de los elementos hijos son muy particulares, y si se tuviera que trabajar alguna de estas propiedades, la recomendación
+es trabajarlo de manera particular para cada proyecto, por lo que esto iría en nuestra hoja de estilos. Sin embargo si se crearán unas clases para la propiedad flex pues hay valores que son muy usuales cuando se
+trabaja con elementos flexibles (se generarán clases para los dos valores más utilizados). También se crearán clases para align-self. */
+
+.flex-none {
+	-ms-flex: none;
+	-webkit-flex: none;
+	flex: none;
+}
+
+.flex-auto {
+	-ms-flex: auto;
+	-webkit-flex: auto;
+	flex: auto;
+}
+
+.as-flex-start {
+	-webkit-align-self: flex-start;
+	/* Nuevamente para internet explorer cambia la propiedad y valor */
+	-ms-flex-item-align: start;
+	align-self: flex-start;
+}
+
+.as-flex-end {
+	-webkit-align-self: flex-end;
+	-ms-flex-item-align: end;
+	align-self: flex-end;
+}
+
+.as-center {
+	-webkit-align-self: center;
+	-ms-flex-item-align: center;
+	align-self: center;
+}
+
+.as-baseline {
+	-webkit-align-self: baseline;
+	-ms-flex-item-align: baseline;
+	align-self: baseline;
+}
+
+.as-stretch {
+	-webkit-align-self: stretch;
+	-ms-flex-item-align: stretch;
+	align-self: stretch;
+}
+
+.as-auto {
+	-webkit-align-self: auto;
+	-ms-flex-item-align: auto;
+	align-self: auto;
+}
+
+/* Luego se copian estas clases dentro de los mediaqueries y así ya se tendrán las clases necesarias si se quiere cambiar de técnica de maquetación en cada media query  */
+
+/* Alineación vertical y horizontal (Jon pasó a este espacio la alíneación vertical que corresponde al display inline-block)*/
+
+.v-top {
+	vertical-align: top;
+}
+
+.v-middle {
+	vertical-align: middle;
+}
+
+
+.v-bottom {
+	vertical-align: bottom;
+}
+
+.v-baseline {
+	vertical-align: baseline;
+}
+
+.left {
+	text-align: left;
+}
+
+.center {
+	text-align: center;
+}
+
+.right {
+	text-align: right;
+}
+
+.justify {
+	text-align: justify;
+}
+
+/* Tamaño de texto */
+
+.f0 {
+	font-size: 0;
+}
+
+.f_25 {
+	font-size: 4px;
+	font-size: .25rem;
+}
+
+.f_5 {
+	font-size: 8px;
+	font-size: .5rem;
+}
+
+.f_75 {
+	font-size: 12px;
+	font-size: .75rem;
+}
+
+.f1 {
+	font-size: 16px;
+	font-size: 1rem;
+}
+
+/* Jon explica que para las clases que representarán un tamaño de fuente con un decimal, se evitará el uso del punto porque puede ocasionarnos problemas, se usará en lugar del punto el guion bajo. */
+.f1_25 {
+	font-size: 20px;
+	font-size: 1.25rem;
+}
+
+.f1_5 {
+	font-size: 24px;
+	font-size: 1.5rem;
+}
+
+.f1_75 {
+	font-size: 28px;
+	font-size: 1.75rem;
+}
+
+/* A partir de 2rem Jon menciona que si usa letras más grandes pero de medio en medio y no es cuarto en cuarto, por lo que las siguiente clases son para medidas con decimales con .5 */
+.f2 {
+	font-size: 32px;
+	font-size: 2rem;
+}
+
+.f2_5 {
+	font-size: 40px;
+	font-size: 2.5rem;
+}
+
+.f3 {
+	font-size: 48px;
+	font-size: 3rem;
+}
+
+.f3_5 {
+	font-size: 56px;
+	font-size: 3.5rem;
+}
+
+.f4 {
+	font-size: 64px;
+	font-size: 4rem;
+}
+
+.f4_5 {
+	font-size: 72px;
+	font-size: 4.5rem;
+}
+
+.f5 {
+	font-size: 80px;
+	font-size: 5rem;
+}
+
+/* margin y padding */
+.mauto {
+	margin: auto;
+}
+
+.m0 {
+	margin: 0;
+}
+
+.m_25 {
+	margin: 4px;
+	margin: .25rem;
+}
+
+.m_5 {
+	margin: 8px;
+	margin: .5rem;
+}
+
+.m_75 {
+	margin: 12px;
+	margin: .75rem;
+}
+
+.m1 {
+	margin: 16px;
+	margin: 1rem;
+}
+
+.m1_25 {
+	margin: 20px;
+	margin: 1.25rem;
+}
+
+.m1_5 {
+	margin: 24px;
+	margin: 1.5rem;
+}
+
+.m1_75 {
+	margin: 28px;
+	margin: 1.75rem;
+}
+
+.m2 {
+	margin: 32px;
+	margin: 2rem;
+}
+
+.pauto {
+	padding: auto;
+}
+
+.p0 {
+	padding: 0;
+}
+
+.p_25 {
+	padding: 4px;
+	padding: .25rem;
+}
+
+.p_5 {
+	padding: 8px;
+	padding: .5rem;
+}
+
+.p_75 {
+	padding: 12px;
+	padding: .75rem;
+}
+
+.p1 {
+	padding: 16px;
+	padding: 1rem;
+}
+
+.p1_25 {
+	padding: 20px;
+	padding: 1.25rem;
+}
+
+.p1_5 {
+	padding: 24px;
+	padding: 1.5rem;
+}
+
+.p1_75 {
+	padding: 28px;
+	padding: 1.75rem;
+}
+
+.p2 {
+	padding: 32px;
+	padding: 2rem;
+}
+
+/* Borde y Display */
+
+.border {
+	border: thin solid #000;
+}
+
+.noborder {
+	border: 0;
+}
+
+.round {
+	border-radius: 100%;
+}
+
+.noround {
+	border-radius: 0;
+}
+
+.inline {
+	display: inline
+}
+
+.block {
+	display: block
+}
+
+.none {
+	display: none
+}
+
+.bullet {
+	margin-left: 16px;
+	margin-left: 1rem;
+	list-style-type: inherit;
+	list-style-position: inside;
+}
+
+.nobullet {
+	margin-left: 0;
+	list-style-type: none;
+}
+
+/* Se hará algo parecido a lo que se hizo en la hoja de grid, y se establecerán distintas clases para cada media query, en relación a cada una de las técnicas de maquetación. Con esto podremos cambiar de técnica de 
+maquetación en cada media query si eso necesitamos */
+@media screen and (min-width: 30em) {
+
+	/* Jon indica que al establecer las clases en los mediaqueries no se puede mantener el mismo nombre, se debe agregar un prefijo según el media query en que se encuentren, como hicimos en la hoja de estilos de 
+	grid */
+
+	/* Tecnica 1 floats */
+	.sm-floatl {
+		float: left;
+	}
+
+	.sm-floatr {
+		float: right;
+	}
+
+	.sm-clear,
+	.sm-clear::after,
+	.sm-clear::before {
+		clear: both;
+	}
+
+	.sm-clear::after,
+	.sm-clear::before {
+		content: " ";
+		display: block;
+	}
+
+	/* Técnica 2 inline-block */
+	.sm-i-b {
+		display: inline-block;
+	}
+
+	/* Técnica 3 display:table; */
+
+	.sm-table {
+		display: table;
+	}
+
+
+	.sm-table-cell {
+		display: table-cell;
+	}
+
+	/* Técnica 4 display:flex; */
+
+	.sm-flex {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+	}
+
+	.sm-flex-inline {
+		display: -ms-inline-flexbox;
+		display: -webkit-inline-flex;
+		display: inline-flex;
+	}
+
+	.sm-flex-row {
+		-webkit-flex-direction: row;
+		-ms-flex-direction: row;
+		flex-direction: row;
+	}
+
+	.sm-flex-row-reverse {
+		-webkit-flex-direction: row-reverse;
+		-ms-flex-direction: row-reverse;
+		flex-direction: row-reverse;
+	}
+
+	.sm-flex-column {
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+	}
+
+	.sm-flex-column-reverse {
+		-webkit-flex-direction: column-reverse;
+		-ms-flex-direction: column-reverse;
+		flex-direction: column-reverse;
+	}
+
+	.sm-flex-nowrap {
+		-webkit-flex-wrap: nowrap;
+		-ms-flex-wrap: nowrap;
+		flex-wrap: nowrap;
+	}
+
+	.sm-flex-wrap {
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+	}
+
+	.sm-flex-wrap-reverse {
+		-webkit-flex-wrap: wrap-reverse;
+		-ms-flex-wrap: wrap-reverse;
+		flex-wrap: wrap-reverse;
+	}
+
+	.sm-jc-flex-start {
+		-webkit-justify-content: flex-start;
+		-ms-flex-pack: start;
+		justify-content: flex-start;
+	}
+
+	.sm-jc-flex-end {
+		-webkit-justify-content: flex-end;
+		-ms-flex-pack: end;
+		justify-content: flex-end;
+	}
+
+	.sm-jc-center {
+		-webkit-justify-content: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+	}
+
+	.sm-jc-space-between {
+		-webkit-justify-content: space-between;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+	}
+
+	.sm-jc-space-around {
+		-webkit-justify-content: space-around;
+		-ms-flex-pack: distribute;
+		justify-content: space-around;
+	}
+
+	.sm-ai-flex-start {
+		-webkit-align-items: flex-start;
+		-ms-flex-align: start;
+		align-items: flex-start;
+	}
+
+	.sm-ai-flex-end {
+		-webkit-align-items: flex-end;
+		-ms-flex-align: end;
+		align-items: flex-end;
+	}
+
+	.sm-ai-center {
+		-webkit-align-items: center;
+		-ms-flex-align: center;
+		align-items: center;
+	}
+
+	.sm-ai-baseline {
+		-webkit-align-items: baseline;
+		-ms-flex-align: baseline;
+		align-items: baseline;
+	}
+
+	.sm-ai-stretch {
+		-webkit-align-items: stretch;
+		-ms-flex-align: stretch;
+		align-items: stretch;
+	}
+
+	.sm-ac-flex-start {
+		-webkit-align-content: flex-start;
+		-ms-flex-line-pack: start;
+		align-content: flex-start;
+	}
+
+	.sm-ac-flex-end {
+		-webkit-align-content: flex-end;
+		-ms-flex-line-pack: end;
+		align-content: flex-end;
+	}
+
+	.sm-ac-center {
+		-webkit-align-content: center;
+		-ms-flex-line-pack: center;
+		align-content: center;
+	}
+
+	.sm-ac-space-between {
+		-webkit-align-content: space-between;
+		-ms-flex-line-pack: justify;
+		align-content: space-between;
+	}
+
+	.sm-ac-space-around {
+		-webkit-align-content: space-around;
+		-ms-flex-line-pack: justify;
+		align-content: space-around;
+	}
+
+	.sm-ac-stretch {
+		-webkit-align-content: stretch;
+		-ms-flex-line-pack: stretch;
+		align-content: stretch;
+	}
+
+	.sm-flex-none {
+		-ms-flex: none;
+		-webkit-flex: none;
+		flex: none;
+	}
+
+	.sm-flex-auto {
+		-ms-flex: auto;
+		-webkit-flex: auto;
+		flex: auto;
+	}
+
+	.sm-as-flex-start {
+		-webkit-align-self: flex-start;
+		-ms-flex-item-align: start;
+		align-self: flex-start;
+	}
+
+	.sm-as-flex-end {
+		-webkit-align-self: flex-end;
+		-ms-flex-item-align: end;
+		align-self: flex-end;
+	}
+
+	.sm-as-center {
+		-webkit-align-self: center;
+		-ms-flex-item-align: center;
+		align-self: center;
+	}
+
+	.sm-as-baseline {
+		-webkit-align-self: baseline;
+		-ms-flex-item-align: baseline;
+		align-self: baseline;
+	}
+
+	.sm-as-stretch {
+		-webkit-align-self: stretch;
+		-ms-flex-item-align: stretch;
+		align-self: stretch;
+	}
+
+	.sm-as-auto {
+		-webkit-align-self: auto;
+		-ms-flex-item-align: auto;
+		align-self: auto;
+	}
+
+	/* alineaciones verticales y horizontales */
+	.sm-v-top {
+		vertical-align: top;
+	}
+
+	.sm-v-middle {
+		vertical-align: middle;
+	}
+
+	.sm-v-bottom {
+		vertical-align: bottom;
+	}
+
+	.sm-v-baseline {
+		vertical-align: baseline;
+	}
+
+	.sm-left {
+		text-align: left;
+	}
+
+	.sm-center {
+		text-align: center;
+	}
+
+	.sm-right {
+		text-align: right;
+	}
+
+	.sm-justify {
+		text-align: justify;
+	}
+
+	/* Tamaños de Fuente */
+	.sm-f0 {
+		font-size: 0;
+	}
+
+	.sm-f_25 {
+		font-size: 4px;
+		font-size: .25rem;
+	}
+
+	.sm-f_5 {
+		font-size: 8px;
+		font-size: .5rem;
+	}
+
+	.sm-f_75 {
+		font-size: 12px;
+		font-size: .75rem;
+	}
+
+	.sm-f1 {
+		font-size: 16px;
+		font-size: 1rem;
+	}
+
+	.sm-f1_25 {
+		font-size: 20px;
+		font-size: 1.25rem;
+	}
+
+	.sm-f1_5 {
+		font-size: 24px;
+		font-size: 1.5rem;
+	}
+
+	.sm-f1_75 {
+		font-size: 28px;
+		font-size: 1.75rem;
+	}
+
+	.sm-f2 {
+		font-size: 32px;
+		font-size: 2rem;
+	}
+
+	.sm-f2_5 {
+		font-size: 40px;
+		font-size: 2.5rem;
+	}
+
+	.sm-f3 {
+		font-size: 48px;
+		font-size: 3rem;
+	}
+
+	.sm-f3_5 {
+		font-size: 56px;
+		font-size: 3.5rem;
+	}
+
+	.sm-f4 {
+		font-size: 64px;
+		font-size: 4rem;
+	}
+
+	.sm-f4_5 {
+		font-size: 72px;
+		font-size: 4.5rem;
+	}
+
+	.sm-f5 {
+		font-size: 80px;
+		font-size: 5rem;
+	}
+
+	/* margin y padding */
+	.sm-mauto {
+		margin: auto;
+	}
+
+	.sm-m0 {
+		margin: 0;
+	}
+
+	.sm-m_25 {
+		margin: 4px;
+		margin: .25rem;
+	}
+
+	.sm-m_5 {
+		margin: 8px;
+		margin: .5rem;
+	}
+
+	.sm-m_75 {
+		margin: 12px;
+		margin: .75rem;
+	}
+
+	.sm-m1 {
+		margin: 16px;
+		margin: 1rem;
+	}
+
+	.sm-m1_25 {
+		margin: 20px;
+		margin: 1.25rem;
+	}
+
+	.sm-m1_5 {
+		margin: 24px;
+		margin: 1.5rem;
+	}
+
+	.sm-m1_75 {
+		margin: 28px;
+		margin: 1.75rem;
+	}
+
+	.sm-m2 {
+		margin: 32px;
+		margin: 2rem;
+	}
+
+	.sm-pauto {
+		padding: auto;
+	}
+
+	.sm-p0 {
+		padding: 0;
+	}
+
+	.sm-p_25 {
+		padding: 4px;
+		padding: .25rem;
+	}
+
+	.sm-p_5 {
+		padding: 8px;
+		padding: .5rem;
+	}
+
+	.sm-p_75 {
+		padding: 12px;
+		padding: .75rem;
+	}
+
+	.sm-p1 {
+		padding: 16px;
+		padding: 1rem;
+	}
+
+	.sm-p1_25 {
+		padding: 20px;
+		padding: 1.25rem;
+	}
+
+	.sm-p1_5 {
+		padding: 24px;
+		padding: 1.5rem;
+	}
+
+	.sm-p1_75 {
+		padding: 28px;
+		padding: 1.75rem;
+	}
+
+	.sm-p2 {
+		padding: 32px;
+		padding: 2rem;
+	}
+
+	/* Borde y Display */
+
+	.sm-border {
+		border: thin solid #000;
+	}
+
+	.sm-noborder {
+		border: 0;
+	}
+
+	.sm-round {
+		border-radius: 100%;
+	}
+
+	.sm-noround {
+		border-radius: 0;
+	}
+
+	.sm-inline {
+		display: inline
+	}
+
+	.sm-block {
+		display: block
+	}
+
+	.sm-none {
+		display: none
+	}
+
+	.sm-bullet {
+		margin-left: 16px;
+		margin-left: 1rem;
+		list-style-type: inherit;
+		list-style-position: inside;
+	}
+
+	.sm-nobullet {
+		margin-left: 0;
+		list-style-type: none;
+	}
+}
+
+@media screen and (min-width: 48em) {
+
+	/* Tecnica 1 floats */
+	.md-floatl {
+		float: left;
+	}
+
+	.md-floatr {
+		float: right;
+	}
+
+	.md-clear,
+	.md-clear::after,
+	.md-clear::before {
+		clear: both;
+	}
+
+	.md-clear::after,
+	.md-clear::before {
+		content: " ";
+		display: block;
+	}
+
+	/* Técnica 2 inline-block */
+	.md-i-b {
+		display: inline-block;
+	}
+
+	/* Técnica 3 display:table; */
+
+	.md-table {
+		display: table;
+	}
+
+
+	.md-table-cell {
+		display: table-cell;
+	}
+
+	/* Técnica 4 display:flex; */
+	.md-flex {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+	}
+
+	.md-flex-inline {
+		display: -ms-inline-flexbox;
+		display: -webkit-inline-flex;
+		display: inline-flex;
+	}
+
+	.md-flex-row {
+		-webkit-flex-direction: row;
+		-ms-flex-direction: row;
+		flex-direction: row;
+	}
+
+	.md-flex-row-reverse {
+		-webkit-flex-direction: row-reverse;
+		-ms-flex-direction: row-reverse;
+		flex-direction: row-reverse;
+	}
+
+	.md-flex-column {
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+	}
+
+	.md-flex-column-reverse {
+		-webkit-flex-direction: column-reverse;
+		-ms-flex-direction: column-reverse;
+		flex-direction: column-reverse;
+	}
+
+	.md-flex-nowrap {
+		-webkit-flex-wrap: nowrap;
+		-ms-flex-wrap: nowrap;
+		flex-wrap: nowrap;
+	}
+
+	.md-flex-wrap {
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+	}
+
+	.md-flex-wrap-reverse {
+		-webkit-flex-wrap: wrap-reverse;
+		-ms-flex-wrap: wrap-reverse;
+		flex-wrap: wrap-reverse;
+	}
+
+	.md-jc-flex-start {
+		-webkit-justify-content: flex-start;
+		-ms-flex-pack: start;
+		justify-content: flex-start;
+	}
+
+	.md-jc-flex-end {
+		-webkit-justify-content: flex-end;
+		-ms-flex-pack: end;
+		justify-content: flex-end;
+	}
+
+	.md-jc-center {
+		-webkit-justify-content: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+	}
+
+	.md-jc-space-between {
+		-webkit-justify-content: space-between;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+	}
+
+	.md-jc-space-around {
+		-webkit-justify-content: space-around;
+		-ms-flex-pack: distribute;
+		justify-content: space-around;
+	}
+
+	.md-ai-flex-start {
+		-webkit-align-items: flex-start;
+		-ms-flex-align: start;
+		align-items: flex-start;
+	}
+
+	.md-ai-flex-end {
+		-webkit-align-items: flex-end;
+		-ms-flex-align: end;
+		align-items: flex-end;
+	}
+
+	.md-ai-center {
+		-webkit-align-items: center;
+		-ms-flex-align: center;
+		align-items: center;
+	}
+
+	.md-ai-baseline {
+		-webkit-align-items: baseline;
+		-ms-flex-align: baseline;
+		align-items: baseline;
+	}
+
+	.md-ai-stretch {
+		-webkit-align-items: stretch;
+		-ms-flex-align: stretch;
+		align-items: stretch;
+	}
+
+	.md-ac-flex-start {
+		-webkit-align-content: flex-start;
+		-ms-flex-line-pack: start;
+		align-content: flex-start;
+	}
+
+	.md-ac-flex-end {
+		-webkit-align-content: flex-end;
+		-ms-flex-line-pack: end;
+		align-content: flex-end;
+	}
+
+	.md-ac-center {
+		-webkit-align-content: center;
+		-ms-flex-line-pack: center;
+		align-content: center;
+	}
+
+	.md-ac-space-between {
+		-webkit-align-content: space-between;
+		-ms-flex-line-pack: justify;
+		align-content: space-between;
+	}
+
+	.md-ac-space-around {
+		-webkit-align-content: space-around;
+		-ms-flex-line-pack: justify;
+		align-content: space-around;
+	}
+
+	.md-ac-stretch {
+		-webkit-align-content: stretch;
+		-ms-flex-line-pack: stretch;
+		align-content: stretch;
+	}
+
+	.md-flex-none {
+		-ms-flex: none;
+		-webkit-flex: none;
+		flex: none;
+	}
+
+	.md-flex-auto {
+		-ms-flex: auto;
+		-webkit-flex: auto;
+		flex: auto;
+	}
+
+	.md-as-flex-start {
+		-webkit-align-self: flex-start;
+		-ms-flex-item-align: start;
+		align-self: flex-start;
+	}
+
+	.md-as-flex-end {
+		-webkit-align-self: flex-end;
+		-ms-flex-item-align: end;
+		align-self: flex-end;
+	}
+
+	.md-as-center {
+		-webkit-align-self: center;
+		-ms-flex-item-align: center;
+		align-self: center;
+	}
+
+	.md-as-baseline {
+		-webkit-align-self: baseline;
+		-ms-flex-item-align: baseline;
+		align-self: baseline;
+	}
+
+	.md-as-stretch {
+		-webkit-align-self: stretch;
+		-ms-flex-item-align: stretch;
+		align-self: stretch;
+	}
+
+	.md-as-auto {
+		-webkit-align-self: auto;
+		-ms-flex-item-align: auto;
+		align-self: auto;
+	}
+
+	/* alineaciones verticales y horizontales */
+	.md-v-top {
+		vertical-align: top;
+	}
+
+	.md-v-middle {
+		vertical-align: middle;
+	}
+
+	.md-v-bottom {
+		vertical-align: bottom;
+	}
+
+	.md-v-baseline {
+		vertical-align: baseline;
+	}
+
+	.md-left {
+		text-align: left;
+	}
+
+	.md-center {
+		text-align: center;
+	}
+
+	.md-right {
+		text-align: right;
+	}
+
+	.md-justify {
+		text-align: justify;
+	}
+
+	/* Tamaños de Fuente */
+	.md-f0 {
+		font-size: 0;
+	}
+
+	.md-f_25 {
+		font-size: 4px;
+		font-size: .25rem;
+	}
+
+	.md-f_5 {
+		font-size: 8px;
+		font-size: .5rem;
+	}
+
+	.md-f_75 {
+		font-size: 12px;
+		font-size: .75rem;
+	}
+
+	.md-f1 {
+		font-size: 16px;
+		font-size: 1rem;
+	}
+
+	.md-f1_25 {
+		font-size: 20px;
+		font-size: 1.25rem;
+	}
+
+	.md-f1_5 {
+		font-size: 24px;
+		font-size: 1.5rem;
+	}
+
+	.md-f1_75 {
+		font-size: 28px;
+		font-size: 1.75rem;
+	}
+
+	.md-f2 {
+		font-size: 32px;
+		font-size: 2rem;
+	}
+
+	.md-f2_5 {
+		font-size: 40px;
+		font-size: 2.5rem;
+	}
+
+	.md-f3 {
+		font-size: 48px;
+		font-size: 3rem;
+	}
+
+	.md-f3_5 {
+		font-size: 56px;
+		font-size: 3.5rem;
+	}
+
+	.md-f4 {
+		font-size: 64px;
+		font-size: 4rem;
+	}
+
+	.md-f4_5 {
+		font-size: 72px;
+		font-size: 4.5rem;
+	}
+
+	.md-f5 {
+		font-size: 80px;
+		font-size: 5rem;
+	}
+
+	/* margin y padding */
+	.md-mauto {
+		margin: auto;
+	}
+
+	.md-m0 {
+		margin: 0;
+	}
+
+	.md-m_25 {
+		margin: 4px;
+		margin: .25rem;
+	}
+
+	.md-m_5 {
+		margin: 8px;
+		margin: .5rem;
+	}
+
+	.md-m_75 {
+		margin: 12px;
+		margin: .75rem;
+	}
+
+	.md-m1 {
+		margin: 16px;
+		margin: 1rem;
+	}
+
+	.md-m1_25 {
+		margin: 20px;
+		margin: 1.25rem;
+	}
+
+	.md-m1_5 {
+		margin: 24px;
+		margin: 1.5rem;
+	}
+
+	.md-m1_75 {
+		margin: 28px;
+		margin: 1.75rem;
+	}
+
+	.md-m2 {
+		margin: 32px;
+		margin: 2rem;
+	}
+
+	.md-pauto {
+		padding: auto;
+	}
+
+	.md-p0 {
+		padding: 0;
+	}
+
+	.md-p_25 {
+		padding: 4px;
+		padding: .25rem;
+	}
+
+	.md-p_5 {
+		padding: 8px;
+		padding: .5rem;
+	}
+
+	.md-p_75 {
+		padding: 12px;
+		padding: .75rem;
+	}
+
+	.md-p1 {
+		padding: 16px;
+		padding: 1rem;
+	}
+
+	.md-p1_25 {
+		padding: 20px;
+		padding: 1.25rem;
+	}
+
+	.md-p1_5 {
+		padding: 24px;
+		padding: 1.5rem;
+	}
+
+	.md-p1_75 {
+		padding: 28px;
+		padding: 1.75rem;
+	}
+
+	.md-p2 {
+		padding: 32px;
+		padding: 2rem;
+	}
+
+	/* Borde y Display */
+
+	.md-border {
+		border: thin solid #000;
+	}
+
+	.md-noborder {
+		border: 0;
+	}
+
+	.md-round {
+		border-radius: 100%;
+	}
+
+	.md-noround {
+		border-radius: 0;
+	}
+
+	.md-inline {
+		display: inline
+	}
+
+	.md-block {
+		display: block
+	}
+
+	.md-none {
+		display: none
+	}
+
+	.md-bullet {
+		margin-left: 16px;
+		margin-left: 1rem;
+		list-style-type: inherit;
+		list-style-position: inside;
+	}
+
+	.md-nobullet {
+		margin-left: 0;
+		list-style-type: none;
+	}
+
+}
+
+@media screen and (min-width: 64em) {
+
+	/* Tecnica 1 floats */
+	.lg-floatl {
+		float: left;
+	}
+
+	.lg-floatr {
+		float: right;
+	}
+
+	.lg-clear,
+	.lg-clear::after,
+	.lg-clear::before {
+		clear: both;
+	}
+
+	.lg-clear::after,
+	.lg-clear::before {
+		content: " ";
+		display: block;
+	}
+
+	/* Técnica 2 inline-block */
+	.lg-i-b {
+		display: inline-block;
+	}
+
+	/* Técnica 3 display:table; */
+
+	.lg-table {
+		display: table;
+	}
+
+
+	.lg-table-cell {
+		display: table-cell;
+	}
+
+	/* Técnica 4 display:flex; */
+	.lg-flex {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+	}
+
+	.lg-flex-inline {
+		display: -ms-inline-flexbox;
+		display: -webkit-inline-flex;
+		display: inline-flex;
+	}
+
+	.lg-flex-row {
+		-webkit-flex-direction: row;
+		-ms-flex-direction: row;
+		flex-direction: row;
+	}
+
+	.lg-flex-row-reverse {
+		-webkit-flex-direction: row-reverse;
+		-ms-flex-direction: row-reverse;
+		flex-direction: row-reverse;
+	}
+
+	.lg-flex-column {
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+	}
+
+	.lg-flex-column-reverse {
+		-webkit-flex-direction: column-reverse;
+		-ms-flex-direction: column-reverse;
+		flex-direction: column-reverse;
+	}
+
+	.lg-flex-nowrap {
+		-webkit-flex-wrap: nowrap;
+		-ms-flex-wrap: nowrap;
+		flex-wrap: nowrap;
+	}
+
+	.lg-flex-wrap {
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+	}
+
+	.lg-flex-wrap-reverse {
+		-webkit-flex-wrap: wrap-reverse;
+		-ms-flex-wrap: wrap-reverse;
+		flex-wrap: wrap-reverse;
+	}
+
+	.lg-jc-flex-start {
+		-webkit-justify-content: flex-start;
+		-ms-flex-pack: start;
+		justify-content: flex-start;
+	}
+
+	.lg-jc-flex-end {
+		-webkit-justify-content: flex-end;
+		-ms-flex-pack: end;
+		justify-content: flex-end;
+	}
+
+	.lg-jc-center {
+		-webkit-justify-content: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+	}
+
+	.lg-jc-space-between {
+		-webkit-justify-content: space-between;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+	}
+
+	.lg-jc-space-around {
+		-webkit-justify-content: space-around;
+		-ms-flex-pack: distribute;
+		justify-content: space-around;
+	}
+
+	.lg-ai-flex-start {
+		-webkit-align-items: flex-start;
+		-ms-flex-align: start;
+		align-items: flex-start;
+	}
+
+	.lg-ai-flex-end {
+		-webkit-align-items: flex-end;
+		-ms-flex-align: end;
+		align-items: flex-end;
+	}
+
+	.lg-ai-center {
+		-webkit-align-items: center;
+		-ms-flex-align: center;
+		align-items: center;
+	}
+
+	.lg-ai-baseline {
+		-webkit-align-items: baseline;
+		-ms-flex-align: baseline;
+		align-items: baseline;
+	}
+
+	.lg-ai-stretch {
+		-webkit-align-items: stretch;
+		-ms-flex-align: stretch;
+		align-items: stretch;
+	}
+
+	.lg-ac-flex-start {
+		-webkit-align-content: flex-start;
+		-ms-flex-line-pack: start;
+		align-content: flex-start;
+	}
+
+	.lg-ac-flex-end {
+		-webkit-align-content: flex-end;
+		-ms-flex-line-pack: end;
+		align-content: flex-end;
+	}
+
+	.lg-ac-center {
+		-webkit-align-content: center;
+		-ms-flex-line-pack: center;
+		align-content: center;
+	}
+
+	.lg-ac-space-between {
+		-webkit-align-content: space-between;
+		-ms-flex-line-pack: justify;
+		align-content: space-between;
+	}
+
+	.lg-ac-space-around {
+		-webkit-align-content: space-around;
+		-ms-flex-line-pack: justify;
+		align-content: space-around;
+	}
+
+	.lg-ac-stretch {
+		-webkit-align-content: stretch;
+		-ms-flex-line-pack: stretch;
+		align-content: stretch;
+	}
+
+	.lg-flex-none {
+		-ms-flex: none;
+		-webkit-flex: none;
+		flex: none;
+	}
+
+	.lg-flex-auto {
+		-ms-flex: auto;
+		-webkit-flex: auto;
+		flex: auto;
+	}
+
+	.lg-as-flex-start {
+		-webkit-align-self: flex-start;
+		-ms-flex-item-align: start;
+		align-self: flex-start;
+	}
+
+	.lg-as-flex-end {
+		-webkit-align-self: flex-end;
+		-ms-flex-item-align: end;
+		align-self: flex-end;
+	}
+
+	.lg-as-center {
+		-webkit-align-self: center;
+		-ms-flex-item-align: center;
+		align-self: center;
+	}
+
+	.lg-as-baseline {
+		-webkit-align-self: baseline;
+		-ms-flex-item-align: baseline;
+		align-self: baseline;
+	}
+
+	.lg-as-stretch {
+		-webkit-align-self: stretch;
+		-ms-flex-item-align: stretch;
+		align-self: stretch;
+	}
+
+	.lg-as-auto {
+		-webkit-align-self: auto;
+		-ms-flex-item-align: auto;
+		align-self: auto;
+	}
+
+	/* alineaciones verticales y horizontales */
+	.lg-v-top {
+		vertical-align: top;
+	}
+
+	.lg-v-middle {
+		vertical-align: middle;
+	}
+
+	.lg-v-bottom {
+		vertical-align: bottom;
+	}
+
+	.lg-v-baseline {
+		vertical-align: baseline;
+	}
+
+	.lg-left {
+		text-align: left;
+	}
+
+	.lg-center {
+		text-align: center;
+	}
+
+	.lg-right {
+		text-align: right;
+	}
+
+	.lg-justify {
+		text-align: justify;
+	}
+
+	/* Tamaños de Fuente */
+	.lg-f0 {
+		font-size: 0;
+	}
+
+	.lg-f_25 {
+		font-size: 4px;
+		font-size: .25rem;
+	}
+
+	.lg-f_5 {
+		font-size: 8px;
+		font-size: .5rem;
+	}
+
+	.lg-f_75 {
+		font-size: 12px;
+		font-size: .75rem;
+	}
+
+	.lg-f1 {
+		font-size: 16px;
+		font-size: 1rem;
+	}
+
+	.lg-f1_25 {
+		font-size: 20px;
+		font-size: 1.25rem;
+	}
+
+	.lg-f1_5 {
+		font-size: 24px;
+		font-size: 1.5rem;
+	}
+
+	.lg-f1_75 {
+		font-size: 28px;
+		font-size: 1.75rem;
+	}
+
+	.lg-f2 {
+		font-size: 32px;
+		font-size: 2rem;
+	}
+
+	.lg-f2_5 {
+		font-size: 40px;
+		font-size: 2.5rem;
+	}
+
+	.lg-f3 {
+		font-size: 48px;
+		font-size: 3rem;
+	}
+
+	.lg-f3_5 {
+		font-size: 56px;
+		font-size: 3.5rem;
+	}
+
+	.lg-f4 {
+		font-size: 64px;
+		font-size: 4rem;
+	}
+
+	.lg-f4_5 {
+		font-size: 72px;
+		font-size: 4.5rem;
+	}
+
+	.lg-f5 {
+		font-size: 80px;
+		font-size: 5rem;
+	}
+
+	/* margin y padding */
+	.lg-mauto {
+		margin: auto;
+	}
+
+	.lg-m0 {
+		margin: 0;
+	}
+
+	.lg-m_25 {
+		margin: 4px;
+		margin: .25rem;
+	}
+
+	.lg-m_5 {
+		margin: 8px;
+		margin: .5rem;
+	}
+
+	.lg-m_75 {
+		margin: 12px;
+		margin: .75rem;
+	}
+
+	.lg-m1 {
+		margin: 16px;
+		margin: 1rem;
+	}
+
+	.lg-m1_25 {
+		margin: 20px;
+		margin: 1.25rem;
+	}
+
+	.lg-m1_5 {
+		margin: 24px;
+		margin: 1.5rem;
+	}
+
+	.lg-m1_75 {
+		margin: 28px;
+		margin: 1.75rem;
+	}
+
+	.lg-m2 {
+		margin: 32px;
+		margin: 2rem;
+	}
+
+	.lg-pauto {
+		padding: auto;
+	}
+
+	.lg-p0 {
+		padding: 0;
+	}
+
+	.lg-p_25 {
+		padding: 4px;
+		padding: .25rem;
+	}
+
+	.lg-p_5 {
+		padding: 8px;
+		padding: .5rem;
+	}
+
+	.lg-p_75 {
+		padding: 12px;
+		padding: .75rem;
+	}
+
+	.lg-p1 {
+		padding: 16px;
+		padding: 1rem;
+	}
+
+	.lg-p1_25 {
+		padding: 20px;
+		padding: 1.25rem;
+	}
+
+	.lg-p1_5 {
+		padding: 24px;
+		padding: 1.5rem;
+	}
+
+	.lg-p1_75 {
+		padding: 28px;
+		padding: 1.75rem;
+	}
+
+	.lg-p2 {
+		padding: 32px;
+		padding: 2rem;
+	}
+
+	/* Borde y Display */
+
+	.lg-border {
+		border: thin solid #000;
+	}
+
+	.lg-noborder {
+		border: 0;
+	}
+
+	.lg-round {
+		border-radius: 100%;
+	}
+
+	.lg-noround {
+		border-radius: 0;
+	}
+
+	.lg-inline {
+		display: inline
+	}
+
+	.lg-block {
+		display: block
+	}
+
+	.lg-none {
+		display: none
+	}
+
+	.lg-bullet {
+		margin-left: 16px;
+		margin-left: 1rem;
+		list-style-type: inherit;
+		list-style-position: inside;
+	}
+
+	.lg-nobullet {
+		margin-left: 0;
+		list-style-type: none;
+	}
+}
+
+/* Jon llega hasta acá el mini framework, sin embargo menciona que esto puede expandirse más si inluímos algo más acorde a nuestras necesidades, por ejemplo, medidas para los sombreados si tenemos una forma 
+específica de trabajarlos o distintas medidas de border radius, en esos casos se harían más clases de forma que nos fueran accesibles dichas propiedades y así se haría más grande el framework */

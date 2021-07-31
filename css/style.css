@@ -1,0 +1,105 @@
+/* Las reglas @font-face siempre deben ser lo primero que se defina en la hoja de estilos */
+
+@font-face {
+	font-family: 'batman';
+	src: url('../fonts/batman_evolution_logo_font_g-webfont.eot');
+	src: url('../fonts/batman_evolution_logo_font_g-webfont.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/batman_evolution_logo_font_g-webfont.woff2') format('woff2'),
+		url('../fonts/batman_evolution_logo_font_g-webfont.woff') format('woff'),
+		url('../fonts/batman_evolution_logo_font_g-webfont.ttf') format('truetype'),
+		url('../fonts/batman_evolution_logo_font_g-webfont.svg#batman_evolution_logo_fontRg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.allvh {
+	min-height: 100vh;
+}
+
+/* Esta es la regla que evita que se oculte el h2 de la primera sección de la página bajo el menú al que se aplicó un position fixed. Jon muestra que se puede hacer tanto con margin como con padding y la diferencia 
+es que el margin crea al final un espacio entre las secciones, lo cual es un inconveniente si hay un color de fonde que debe mantenerse a lo largo de la página, en cambio con padding esto no sucede porque el padding
+es como un margen interno en lugar de externo. */
+.fixed-top {
+	padding-top: 6rem;
+}
+
+/* Con esta clase se fijó el menú a la parte superior de la página, pero al hacer esto, el h2 de la primera sección comenzó a ocultarse detrás porque con un position fixed el elemento sale del flujo de la página
+(es como si no existiera en el html). Para arreglar esto Jon agrega un margin-top a cada sección (es la regla que está arriba) */
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 999;
+	background-color: #000;
+}
+
+/* Al logo Jon tuvo que agregarle el valor contain como background-size porque el vector se redimensionaba quedando mal por sí solo, con contain la imagen se adaptó a la medida e 4rem x 4rem */
+.logo {
+	width: 4rem;
+	height: 4rem;
+	/* Con esto se ocultó el letrero de batman que conforma al h1 */
+	text-indent: 9999px;
+	background: transparent url("../img/logo-batman.svg") no-repeat left;
+	background-size: contain;
+}
+
+.menu {
+	font-weight: 700;
+}
+
+/* Con esta regla se agregó la imagen de batman que va al inicio de la página pero se agregó como fondo y aprovechando que tiene un contorno negro se agregó como color de fondo el fondo negro para que cuando
+se deje de ver la imagen siga viendose el color negro. */
+.home {
+	background: #000 url("../img/fondo-home.jpg") no-repeat center;
+}
+
+/* Esta regla son los estilos del letrero que va sobre el fondo con la imagen de batman, también se aplicaron algunos estilos de los media queries para que se vaya adaptando al tamaño de la pantalla, creciendo o
+disminuyendo su tamaño según se necesita, aunque al final no se conseguía el tamaño deseado, por lo que se terminaron empleando unidades de viewport, como se puede apreciar en la siguiente regla */
+.home h2 {
+	/* Se gregó un 40 viewport height que hace que el letrero se aleje de la parte superior al 40%, márgenes laterales automáticos para centrar el elemento, aunque ya se centraba con la clase center, pues heredaba
+	ese centrado del padre y margin bottom 0 porque no nos interesa en realidad aplicarlo. */
+	margin: 40vh auto 0;
+	/* Aquí se agre´go esta unidad para que el letrero abarque siempre el 20% del viewport */
+	font-size: 20vw;
+	font-weight: 900;
+	color: #EECF27;
+	letter-spacing: 1vw;
+}
+
+/* Se hizo esta regla porque las imágenes y etiquetas picture tienen establecido un ancho del 100% y el ícono tipo facebook de batman para la versión móvil se veía muy grande */
+.batman-img {
+	max-width: 50%;
+}
+
+.logos ul {
+	font-family: "batman";
+}
+
+@media screen and (min-width: 30em) {}
+
+@media screen and (min-width: 48em) {
+	.batman-img {
+		max-width: 100%;
+	}
+
+	.logos-video iframe {
+		max-width: 850px;
+		height: 480px;
+	}
+
+	.rslides {
+		max-width: 640px;
+		margin: auto;
+	}
+}
+
+@media screen and (min-width: 64em) {
+	.batman-img {
+		max-width: 75%;
+	}
+
+	.home h2 {
+		font-size: 15vw;
+	}
+}

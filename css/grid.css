@@ -1,0 +1,266 @@
+/* En esta plantilla se escriben los estilos para la retícula, aquí definimos las características para los elementos contenedores y los elementos hijos. Se pueden tener elementos fijo (que sean flexibles pero que
+lleguen a un límite, es decir el elemento tendrá un tamaño máximo) o elementos que fluyan totalmente a lo largo de la pantalla. Esta es la diferencia de un elemento fijo a uno fluido, el fluido se seguirá
+expandiendo junto al redimensionamiento de la pantalla si es necesario, en cambio los fijos como dijimos tendrán un límite para redimensionarse y abarcarán un ancho o altura máximos. Se hace una mezcla de ambos 
+contenedores. Se hace un contenedor fluido para encerrar a uno fijo */
+
+.container,
+.container-fluid {
+	/* Los contenedores siempre tendrán un display block */
+	display: block;
+	width: 100%;
+	margin: auto;
+	/* background-color: #EEE; */
+}
+
+.container {
+	max-width: 1200px;
+}
+
+.caja2 {
+	max-width: 1200px;
+	margin: auto;
+}
+
+.item {
+	display: block;
+	padding: 16px;
+	padding: 1rem;
+	/* background-color: #CCC; */
+}
+
+/* 
+Aquí se calcula la cantidad de columnas que tendrá nuestra retícula, y se hace con una regla de 3
+
+	Los anchos se calculan por regla de 3
+	Mi reticula es de 12 columnas
+	Mi base de 960px
+
+	12col -----> 960px;
+	número de-col -----> ???px
+	
+	( n-col * 960px ) / 12col = resultado en px
+
+	( 6col * 960px ) / 12col = 480px
+	( 1col * 960px ) / 12col = 80px
+
+	Ahora lo que pasa es que en la formula no se pienza en una medida de pixeles fija, sino en porcentaje, para etso se hace la siguiente operación
+
+Mi reticula es de 12 columnas pero la base no son 960px sino el 100% de la pantalla, entonces la operación queda así
+
+
+(n-col * 100%) / 12col=resultado en % 
+
+columna entre columna se va y queda el resultado en porcentajes
+
+(n * 100%) / 12 =resultado en %
+
+Para calcular el procentaje ocupado por once columnas se calcula entonces
+
+(11 * 100) / 12 = 91.66666666666667%
+
+Se debe copiar el resultado exacto obtenido en esta operación, y así se calculará cada columna
+
+*/
+
+
+
+.ph12 {
+	width: 100%;
+}
+
+.ph11 {
+	width: 91.66666666666667%;
+}
+
+.ph10 {
+	width: 83.33333333333333%;
+}
+
+.ph9 {
+	width: 75%;
+}
+
+.ph8 {
+	width: 66.66666666666667%;
+}
+
+.ph7 {
+	width: 58.33333333333333%;
+}
+
+.ph6 {
+	width: 50%;
+}
+
+.ph5 {
+	width: 41.66666666666667%;
+}
+
+.ph4 {
+	width: 33.33333333333333%;
+}
+
+.ph3 {
+	width: 25%;
+}
+
+.ph2 {
+	width: 16.66666666666667%;
+}
+
+.ph1 {
+	width: 8.333333333333333%;
+}
+
+/* Jon copia y pega cada medida del grid dentro de los media queries, y lo que hace es cambiar el nombre de las clases, así el agrega varias clases a un mismo objeto y se redimensiona con cada mediaquery, esto ahorra 
+tiempo pues si no se hace así, se usaría una misma clase y se tendría que modificar en cada media query, en cambio ahora agregamos una clase según nuestras necesidades y ya, todo se aplica según el mediaquery en que 
+esté. Podemos llegar a crear nuevas clases para cambiar el display de los elementos y así nos permitirá cambiar de una técnica de maquetación a otra. */
+@media screen and (min-width: 30em) {
+	.sm12 {
+		width: 100%;
+	}
+
+	.sm11 {
+		width: 91.66666666666667%;
+	}
+
+	.sm10 {
+		width: 83.33333333333333%;
+	}
+
+	.sm9 {
+		width: 75%;
+	}
+
+	.sm8 {
+		width: 66.66666666666667%;
+	}
+
+	.ph7 {
+		width: 58.33333333333333%;
+	}
+
+	.sm6 {
+		width: 50%;
+	}
+
+	.sm5 {
+		width: 41.66666666666667%;
+	}
+
+	.sm4 {
+		width: 33.33333333333333%;
+	}
+
+	.sm3 {
+		width: 25%;
+	}
+
+	.sm2 {
+		width: 16.66666666666667%;
+	}
+
+	.sm1 {
+		width: 8.333333333333333%;
+	}
+}
+
+@media screen and (min-width: 48em) {
+	.md12 {
+		width: 100%;
+	}
+
+	.md11 {
+		width: 91.66666666666667%;
+	}
+
+	.md10 {
+		width: 83.33333333333333%;
+	}
+
+	.md9 {
+		width: 75%;
+	}
+
+	.md8 {
+		width: 66.66666666666667%;
+	}
+
+	.md7 {
+		width: 58.33333333333333%;
+	}
+
+	.md6 {
+		width: 50%;
+	}
+
+	.md5 {
+		width: 41.66666666666667%;
+	}
+
+	.md4 {
+		width: 33.33333333333333%;
+	}
+
+	.md3 {
+		width: 25%;
+	}
+
+	.md2 {
+		width: 16.66666666666667%;
+	}
+
+	.md1 {
+		width: 8.333333333333333%;
+	}
+}
+
+@media screen and (min-width: 64em) {
+	.lg12 {
+		width: 100%;
+	}
+
+	.lg11 {
+		width: 91.66666666666667%;
+	}
+
+	.lg10 {
+		width: 83.33333333333333%;
+	}
+
+	.lg9 {
+		width: 75%;
+	}
+
+	.lg8 {
+		width: 66.66666666666667%;
+	}
+
+	.lg7 {
+		width: 58.33333333333333%;
+	}
+
+	.lg6 {
+		width: 50%;
+	}
+
+	.lg5 {
+		width: 41.66666666666667%;
+	}
+
+	.lg4 {
+		width: 33.33333333333333%;
+	}
+
+	.lg3 {
+		width: 25%;
+	}
+
+	.lg2 {
+		width: 16.66666666666667%;
+	}
+
+	.lg1 {
+		width: 8.333333333333333%;
+	}
+}

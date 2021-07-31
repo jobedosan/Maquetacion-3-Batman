@@ -1,0 +1,245 @@
+/* Primero se aplican los estilos generales al html */
+
+html {
+	/* Esto hace que los elementos no se hagan más grandes si se aumenta su padding o margins, se agregaron los prefijos para asegurar la compatibilidad con todos los navegadores */
+	box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	font-family: helvetica, sans-serif;
+	/* La siguiente propiedad CSS se usa para que la tipografía se vea mejor y que no se deforme en los navegadores, pero también hay que agregarla con prefijos */
+	/* Esta línea es para compatibilidad con firefox */
+	-moz-text-size-adjust: 100%;
+	/* Esta línea es para compatibilidad con IE */
+	-ms-text-size-adjust: 100%;
+	/* webkit es para los demás navegadores */
+	-webkit-text-size-adjust: 100%;
+	font-size: 16px;
+	background-color: #fff;
+	color: #000;
+}
+
+/* Se agregó esta línea para que todos los elementos que lleguen a desbordarse del body (horizontalmente) se oculten. El body contendrá a los contenedores a los que les vamos a dar estilos con el microframework. 
+Los contenedores deben sobrepasar al body y si lo hacen deben ocultarse. Esto lo hacen algunos frameworks, sobretodo los que están orientados a responsive design, porque sobretodo en las versiones móviles, esto 
+evitará que se cree un scroll horizontal. Por eso es overflow-x, no se le pone tanto en X como en Y porque entonces solo tendríamos visualización del contenido que tenga la altura de nuestra pantalla porque se 
+bloquearía la barra de desplazamiento, y en un dispositivo móvil se toma en cuenta la adaptación en el ancho y no en el alto. No importa que tan grande o pequeño es el contenido verticalmente porque se puede hacer
+scroll para verlo todo */
+body {
+	overflow-x: hidden;
+}
+
+/* Este selector lo que hace es heredar el box-sizing del html porque es el padre, entonces todos los elementos tendrán un box-sizing de border-box  */
+*,
+*::after,
+*::before {
+	/* Se agraga la propiedad box-sizing con prefijos para tener compatibilidad con todos los navegadores */
+	box-sizing: border-box;
+	-ms-box-sizing: inherit;
+	-moz-box-sizing: inherit;
+	-webkit-box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+/* Luego de haber establecido todo lo anterior, para unificarlos */
+
+a {
+	color: #EECF27;
+}
+
+/* Luego se establece el estilo de los enlaces cuando se haga un hover */
+
+a:hover {
+	color: #CCC;
+}
+
+/* Aquí se establece el tamaño que tendrán los encabezados 1 */
+
+h1 {
+	/* Hay navegadores como IE8 que no soportan la unidad de rem, por lo que se agregará su equivalente en px. Es importante recordar colocar primero esa medida en px porque con la cascada, el navegador al momento de
+	leer el CSS aplicaría primero la propiedad con valor en pixeles y si acepta rem, se quedaría con los rem al final. en el caso de IE8, se quedaría directamente con los px y al leer la medida en rem, como no sabe 
+	qué es, simplemente lo ignorará. Entonces se coloca así porque si no, al colocar las medidas alrevés, por cascada, los navegadores aunque soporten la unidad de rem, se quedarían con la medida en px. */
+	font-size: 32px;
+	font-size: 2rem;
+}
+
+/* Aquí se establecerá el tamaño de los subtítulos  */
+
+h2 {
+	font-size: 28px;
+	font-size: 1.75rem;
+}
+
+h3 {
+	font-size: 24px;
+	font-size: 1.5rem;
+}
+
+h4 {
+	font-size: 20px;
+	font-size: 1.25rem;
+}
+
+/* Esta regla se aplicará a distintos elementos, por lo que se usa un selector compuesto */
+h5,
+a,
+abbr,
+b,
+code,
+dfn,
+em,
+i,
+li,
+mark,
+pre,
+strong {
+	font-size: 16px;
+	font-size: 1rem;
+}
+
+h6,
+small {
+	font-size: 12px;
+	font-size: 0.75rem;
+}
+
+/* Esto se agregó porque con los estilos anteriores hace que se borren las viñetas o números al crear listas (el margin 0 y el padding 0 e slo que rompe con esto) */
+li {
+	margin-left: 16px;
+	margin-left: 1rem;
+	/* Aquí se establece que el estilo de la lista será heredado del padre (ul o ol) */
+	list-style-type: inherit;
+	/* Con esto se hace que la viñeta o número de la lista esté por dentro del elemento ul o ol, con el valor outside se hace que esté por fuera de este espacio mientras que el texto de cada li se encuentra por 
+	dentro del espacio de ul o ol */
+	list-style-position: inside;
+}
+
+/* Los siguientes estilos son para etiquetas que cambian algún aspecto de las letras por defecto */
+abbr,
+dfn,
+em,
+i {
+	font-style: italic;
+}
+
+b,
+strong {
+	font-weight: bold;
+}
+
+code,
+pre {
+	font-family: monospace;
+}
+
+/* Por defecto, la etiqueta mark resalta el texto en amarillo, sin embargo se agrega esta regla para los navegadores que no reconocen dicha etiqueta */
+mark {
+	background-color: yellow;
+}
+
+hr {
+	margin: 16px auto;
+	margin: 1rem auto;
+	width: 100%;
+	border: thin solid #000;
+}
+
+/* Los siguientes estilos se agregan para que las etiquetas semánticas de html 5 actúen como deben (como bloques) en navegadores que no las reconocen */
+
+article,
+aside,
+figcaption,
+figure,
+header,
+footer,
+details,
+menu,
+nav,
+main,
+section,
+summary {
+	display: block;
+}
+
+/* Este estilo se agrega para las tablas */
+table {
+	border-collapse: collapse;
+}
+
+/* Los siguientes estilos son para el responsive de los  medios flexibles (video, canvas, audio, imágenes, etc.) */
+
+audio,
+video,
+canvas,
+img,
+iframe,
+picture,
+progress,
+svg {
+	display: inline-block;
+	/* Esta línea es para la alineación vertical ya que los elementos en cuestión tendrán un display inline-block */
+	vertical-align: baseline;
+	/* El width se agrega para los navegadores que no soportan la propiedad max-width */
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}
+
+/* Los siguientes estilos aplican para elementos de formulario (Jon menciona que aunque no se darán estilos a este tipo de elementos en el sitio, es importante agragarlos igualmente). Los siguientes estilos son con 
+los que Jon suele resetear sus elementos de formulario */
+
+button,
+input,
+optgroup,
+option,
+select,
+textarea {
+	padding: 4px;
+	padding: 0.25rem;
+	font-family: inherit;
+	font-size: 16px;
+	font-size: 1rem;
+	border: thin solid #000;
+}
+
+/* Con estos estilos se señala que al pasar el mouse sobre todos los inputs interactivos, el cursos pasará a ser una mano */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="checkbox"],
+input[type="radio"],
+label,
+select {
+	cursor: pointer;
+}
+
+/* Cada navegador interpreta a los elementos de formulario con el atributo disabled de forma distinta (casi todos lo interpretan como un gris, pero el tono de gris varía). Entonces para evitar esta diferencia se 
+establecerá un estándar en la siguiente regla */
+*[disabled] {
+	cursor: default;
+	background-color: #DDD;
+	color: #999;
+}
+
+/* Otro elemento que debe estandarizarse es textarea, porque en algunos navegadores aparece una pequeña mueca en la parte inferior derecha que permite que el usuario redimensione esa caja de texto, llegando a
+crear problemas de desbordamiento. Entonces, para evitar esto, se establecerá la siguiente regla con el fin de eliminar esa posibilidad (algunas veces los usuarios lo hacen por accidente y redimensionan esa caja) */
+
+textarea {
+	resize: none;
+}
+
+/* Esta regla con el pseudoelemento selection sirve para personalizar los colores con que se subraya un texto al seleccionarlo con el mouse. Esto se puede usar para que el subrayado sea más acorde al sitio web
+que estemos desarrollando */
+::selection {
+	color: #FFF;
+	background-color: #CCC;
+}
+
+/* También se hace la regla con el selector con prefijo para que sea compatible con firefox (solo se hace con firefox porque es el que no soporte dicho pseudoelemento) */
+::-moz-selection {
+	color: #FFF;
+	background-color: #CCC;
+}
+
+/* Hasta acá llega el desarrollo de la hoja de reseteo de nuestro microframework. Puede varíar en base al sitio web y puede extenderse incluso si se necesita o minimizarse también. */
